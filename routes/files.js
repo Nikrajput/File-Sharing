@@ -9,7 +9,7 @@ let storage = multer.diskStorage({
     destination: (req, file, cb) => cb(null, 'uploads/'),
     filename: (req, file, cb) => {
         const uniqueName = `${Date.now()}-${Math.round(Math.random() * 1E9)}${path.extname(file.originalname)}`
-              cb(null, uniqueName)
+        cb(null, uniqueName)
     } 
 })
 
@@ -37,7 +37,7 @@ router.post('/',async(req,res)=>{
 router.post('/send', async (req, res) => {
 
     const { uuid, emailTo, emailFrom, expiresIn } = req.body
-    console.log(uuid,emailTo,emailFrom)
+    
     if(!uuid || !emailTo || !emailFrom) {
         return res.status(422).send({ error: 'All fields are required except expiry'})
     }
